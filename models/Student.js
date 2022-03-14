@@ -1,4 +1,4 @@
-const { string, number } = require('joi');
+const { string, number, array, boolean } = require('joi');
 const {Schema,model } = require('mongoose');
  
 const studentSchema = new Schema({
@@ -8,11 +8,16 @@ const studentSchema = new Schema({
     },
     email:{
         type: String,
-        required:false
+        required:true,
+        unique: true
     },
     password : {
         type:String,
         required: true,
+    },
+    birthDate:{
+        type: String,
+        required: true
     },
     gender:{
         type: String,
@@ -25,8 +30,18 @@ const studentSchema = new Schema({
     schoolName : {
         type : String,
         required : true
+    },
+    isAdmin:{
+        type:Boolean,
+        default:false 
+    },
+    verified:{
+        type:Boolean,
+        default:false
+    },
+    courses : {
+        type:Array, 
     }
-
 })
-const Student = model("Student",studentSchema);
-module.exports = Student;
+const User = model("Student",studentSchema);
+module.exports = User;
