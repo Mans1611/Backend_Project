@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const router = require('../router/routes');
 const mailVerification = async (to,msg)=>{
     const transporter = nodemailer.createTransport({
         host : process.env.HOST,
@@ -13,7 +14,8 @@ const mailVerification = async (to,msg)=>{
         from:process.env.USER,
         to:to,
         subject:'College Verification',
-        html:`<a>${msg}</a>`,
+        html:`<h2><a href = ${msg}>click here to verify</a></h2>`,
          })
 }
+
 module.exports = mailVerification;

@@ -52,38 +52,58 @@ router.post('/register',async (req,res)=>{
             grade ,
             schoolName ,
             graduationYear,
-          
           });
           const emailToken = crypto.randomBytes(32).toString('hex');
           const {id} = student;
-          console.log(id);
           await new Token ({ 
             _id:id, 
             token : emailToken
           }).save().then(()=>console.log('done'));
-          const link = `http://localhost:3000/students/verify/${emailToken}`;
+          const link = `http://localhost:3000/students/verify/${emailToken}/${id}`;
           await mailVerification(email,link);
           student.save()
-          .then(()=>res.status(200).json({msg:"User Created Succussfully"}))
+          .then(()=>res.status(200).header("x-auth-token",token).json({msg:"User Created Succussfully"}))
           .catch(err=>res.status(401).send({msg:err}));
     }   
 })
-router.get('/students/verify/:token',async (req,res)=>{
-  const {token} = req.params;
+router.get('/students/verify/:token/:id',async (req,res)=>{
+  const {token,id} = req.params;
   const tokenFromDB = await Token.findOne({token});
-  console.log("passed");
-  console.log(tokenFromDB);
   if(!tokenFromDB)
     return res.status(404).json({err:'token do not found'});
   try{
-
-  
-  await User.findByIdAndUpdate(tokenFromDB._id,{verified:true});
+  await User.findByIdAndUpdate(id,{verified:true});
   await Token.findOneAndDelete({token});
   res.status(200).send("verifeid");
   }catch(err){
     res.status(401).send(err);
   }
 });
+const signInValidation = joi.object({
+  email: joi.string().email().required(),
+  password : joi.string().required()
+})
 
-module.exports = router ; 
+router.post('/login',async(req,res)=>{
+  const {error} = signInValidation.validate(req.body,{abortEarly:false});
+  if (error) {
+    const errorObject = {};
+    error.details.forEach((err) => {
+      errorObject[err.path[0]] = err.message;
+    });
+    return res.status(416).send(errorObject);
+  }
+  try{
+    const {email,password} = req.body;
+    const studnt = await User.findOne({email});
+    const checkPass = await bcrypt.compare(password,studnt.password);
+    if(studnt && checkPass)
+      return res.status(201).send("your login success");
+    res.status(404).send('Invalid email or password');
+  }catch(err){
+    res.status(401).json({error:err});
+  }
+
+})
+
+module.exports = router;
