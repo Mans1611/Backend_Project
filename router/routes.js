@@ -80,12 +80,10 @@ router.get('/students/verify/:token',async (req,res)=>{
   
   await User.findByIdAndUpdate(tokenFromDB._id,{verified:true});
   await Token.findOneAndDelete({token});
-  res.status(201).send("verifeid");
+  res.status(200).send("verifeid");
   }catch(err){
     res.status(401).send(err);
   }
-  
-  
 });
 
 module.exports = router ; 
