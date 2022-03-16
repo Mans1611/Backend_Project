@@ -38,11 +38,10 @@ router.post('/register',async (req,res)=>{
     else{
           const salt = await  bcrypt.genSalt(10);
           const hashed = await bcrypt.hash(password,salt);
-          const token = jwt.sign({email,fullName},process.env.PK);
+          const token = jwt.sign({email,fullName,isAdmin},process.env.PK);
           console.log(token);
           let date = birthDate.toString();
           date = date.split(' ')[0]; // to trim the time from the date
-          
           const student = await new User({
             fullName,
             email,
@@ -66,7 +65,7 @@ router.post('/register',async (req,res)=>{
           .catch(err=>res.status(401).send({msg:err}));
     }   
 })
-router.get('/students/verify/:token/:id',async (req,res)=>{
+router.get('/verify/:token/:id',async (req,res)=>{
   const {token,id} = req.params;
   const tokenFromDB = await Token.findOne({token});
   if(!tokenFromDB)
@@ -103,7 +102,6 @@ router.post('/login',async(req,res)=>{
   }catch(err){
     res.status(401).json({error:err});
   }
-
 })
 
 module.exports = router;

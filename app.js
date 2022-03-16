@@ -4,6 +4,7 @@ const app = express();
 require('dotenv').config();
 const router = require('./router/routes');
 const users = require('./router/users');
+const courses = require('./router/courses')
 const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -20,5 +21,6 @@ app.listen(PORT,()=>{
 
 app.use("/",router);
 app.use("/users",users);
+app.use("/coureses",courses);
 
 
