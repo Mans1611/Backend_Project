@@ -20,7 +20,6 @@ const signUpValidation = joi.object({
     schoolName : joi.string().min(3).max(25).required(),
     graduationYear : joi.number().min(2015).max(2021).required(),
 })
-
 router.post('/register',async (req,res)=>{
     const {error} = signUpValidation.validate(req.body,{abortEarly:false}); 
     if (error) 

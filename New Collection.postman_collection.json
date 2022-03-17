@@ -1,0 +1,309 @@
+{
+	"info": {
+		"_postman_id": "b64566e9-0658-4dc2-9bd6-068e93794c36",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "api",
+			"item": [
+				{
+					"name": "project",
+					"item": [
+						{
+							"name": "http://localhost:3000/users/623114a5027f0f6be5c3f1b3",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hbnMueW91c2VmMTYxMUBnbWFpbC5jb20iLCJmdWxsTmFtZSI6Im1hbnNvdXIgTW9oIiwiaWF0IjoxNjQ3MzgzNzE3fQ.0Cj3aedAOpOks9BNXiNIpWh7Dwj4uJol97i2Syoc8kA",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/users/623114a5027f0f6be5c3f1b3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"623114a5027f0f6be5c3f1b3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:3000/login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "fullName",
+											"value": "mansour Moh",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "email",
+											"value": "1901567@eng.asu.edu.eg",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "01007815725",
+											"type": "text"
+										},
+										{
+											"key": "birthDate",
+											"value": "12/11/2001",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "gender",
+											"value": "male",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "grade",
+											"value": "68",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "schoolName",
+											"value": "MohamedBin",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "graduationYear",
+											"value": "2016",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3000/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"login"
+									],
+									"query": [
+										{
+											"key": "fullName",
+											"value": "01007815725",
+											"disabled": true
+										},
+										{
+											"key": "email",
+											"value": "1901567@eng.asu.edu.eg",
+											"disabled": true
+										},
+										{
+											"key": "password",
+											"value": "654654684",
+											"disabled": true
+										},
+										{
+											"key": "gender",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "grade",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "schoolName",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "graduationYear",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:3000/users/62324a651b1dbf6429e836d8",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hbnMueW91c2VmMTYxMUBnbWFpbC5jb20iLCJmdWxsTmFtZSI6Im1hbnNvdXIgTW9oIiwiaWF0IjoxNjQ3NDYzMDEzfQ.1V6hj60jmFMkStUkWLtBpmdrmNxzDaUhO9rtmUqtlxU",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "fullName",
+											"value": "ahmed mohamed",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "01007815725",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3000/users/62324a651b1dbf6429e836d8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"62324a651b1dbf6429e836d8"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:3000/coureses/add",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjE5MDE1NjdAZW5nLmFzdS5lZHUuZWciLCJmdWxsTmFtZSI6Im1hbnNvdXIgTW9oIiwiaWF0IjoxNjQ3NTMxMjc0fQ.QTRoTVlE8wLMADPoLz3aeNkHZ7sixT4zSvtPDTd8j24",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "Name",
+											"value": "Math2",
+											"type": "text"
+										},
+										{
+											"key": "Code",
+											"value": "PHM1023",
+											"type": "text"
+										},
+										{
+											"key": "Year",
+											"value": "2022",
+											"type": "text"
+										},
+										{
+											"key": "Instructor",
+											"value": "Dr.ahmed",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3000/coureses/add",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"coureses",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:3000/coureses/",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/coureses/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"coureses",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:3000/coureses/CSE123/enroll",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjE5MDE1NjdAZW5nLmFzdS5lZHUuZWciLCJmdWxsTmFtZSI6Im1hbnNvdXIgTW9oIiwiaWF0IjoxNjQ3NTMxMjc0fQ.QTRoTVlE8wLMADPoLz3aeNkHZ7sixT4zSvtPDTd8j24",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "Name",
+											"value": "Vibration",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "Year",
+											"value": "2010",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3000/coureses/CSE123/enroll",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"coureses",
+										"CSE123",
+										"enroll"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
