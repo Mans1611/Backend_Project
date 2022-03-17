@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 const Token = require('../models/Token');
 const crypto = require('crypto');
 const mailVerification = require('../maller/mailVerification');
-
+const checkValidation = require('../checkValidation');
 
 const signUpValidation = joi.object({
     fullName : joi.string().required().min(4).max(16),
@@ -23,14 +23,9 @@ const signUpValidation = joi.object({
 
 router.post('/register',async (req,res)=>{
     const {error} = signUpValidation.validate(req.body,{abortEarly:false}); 
-    if (error) {
-        const errorObject = {};
-        error.details.forEach((err) => {
-          errorObject[err.path[0]] = err.message;
-        });
-        console.log(errorObject);
-        return res.status(416).send(errorObject);
-      }
+    if (error) 
+        return res.status(401).send(checkValidation(error));
+      
     const {fullName,email,password,birthDate,gender,grade,schoolName,graduationYear} = req.body;
     const existStudent = await User.findOne({email});
     if(existStudent)
@@ -38,7 +33,7 @@ router.post('/register',async (req,res)=>{
     else{
           const salt = await  bcrypt.genSalt(10);
           const hashed = await bcrypt.hash(password,salt);
-          const token = jwt.sign({email,fullName,isAdmin},process.env.PK);
+          const token = jwt.sign({email,fullName},process.env.PK);
           console.log(token);
           let date = birthDate.toString();
           date = date.split(' ')[0]; // to trim the time from the date
@@ -85,13 +80,9 @@ const signInValidation = joi.object({
 
 router.post('/login',async(req,res)=>{
   const {error} = signInValidation.validate(req.body,{abortEarly:false});
-  if (error) {
-    const errorObject = {};
-    error.details.forEach((err) => {
-      errorObject[err.path[0]] = err.message;
-    });
-    return res.status(416).send(errorObject);
-  }
+  if (error) 
+    return res.status(401).send(checkValidation(error));
+
   try{
     const {email,password} = req.body;
     const studnt = await User.findOne({email});
