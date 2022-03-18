@@ -13,7 +13,7 @@ const { route } = require('express/lib/router');
 
 
 router.get('/',(req,res)=>{
-  res.send("Welcome to our college System");
+  res.send(`<h1 style="text-align:center;">Welcome to our college System</h1>`);
 })
 const signUpValidation = joi.object({
     fullName : joi.string().required().min(4).max(16),
