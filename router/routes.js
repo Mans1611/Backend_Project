@@ -9,6 +9,13 @@ const Token = require('../models/Token');
 const crypto = require('crypto');
 const mailVerification = require('../maller/mailVerification');
 const checkValidation = require('../checkValidation');
+const { route } = require('express/lib/router');
+
+
+router.get('/',(req,res)=>{
+  res.send("Welcome to our college System");
+})
+
 
 const signUpValidation = joi.object({
     fullName : joi.string().required().min(4).max(16),
@@ -20,6 +27,7 @@ const signUpValidation = joi.object({
     schoolName : joi.string().min(3).max(25).required(),
     graduationYear : joi.number().min(2015).max(2021).required(),
 })
+
 router.post('/register',async (req,res)=>{
     const {error} = signUpValidation.validate(req.body,{abortEarly:false}); 
     if (error) 
