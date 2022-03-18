@@ -15,8 +15,6 @@ const { route } = require('express/lib/router');
 router.get('/',(req,res)=>{
   res.send("Welcome to our college System");
 })
-
-
 const signUpValidation = joi.object({
     fullName : joi.string().required().min(4).max(16),
     email: joi.string().email().required(),
@@ -31,7 +29,7 @@ const signUpValidation = joi.object({
 router.post('/register',async (req,res)=>{
     const {error} = signUpValidation.validate(req.body,{abortEarly:false}); 
     if (error) 
-        return res.status(401).send(checkValidation(error));
+        return res.status(401).send(checkValidation(error)); // checkValidation is used to minmize the size of the code, as it required in each post or put request
       
     const {fullName,email,password,birthDate,gender,grade,schoolName,graduationYear} = req.body;
     const existStudent = await User.findOne({email});

@@ -12,7 +12,7 @@ app.use(express.json());
 (async function (){
     mongoose.connect(process.env.DB_URI,()=>{
     console.log("connected to the database");
-})}())
+})}()) // self-invoking function for connecting with the database
 
 
 app.listen(PORT,()=>{
@@ -21,6 +21,6 @@ app.listen(PORT,()=>{
 
 app.use("/",router);
 app.use("/users",users);
-app.use("/coureses",courses);
+app.use("/courses",courses);
 
 
